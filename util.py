@@ -4,7 +4,7 @@ import heapq, random
 import cStringIO
 
 """
- Data structures useful for implementing SearchAgents
+ Data structures useful for implementing searchAlgorithms
 """
 
 class Stack:

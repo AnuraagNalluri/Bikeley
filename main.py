@@ -67,8 +67,10 @@ while inputer != "quit":
         inputer = "quit"
         break
     searchProb = SearchProblem(input1,input2,gr)
-    if pathToString(searchAlgorithms.uniformCostSearch(searchProb)) is None:
-        print("No Path exists between the two points!")
-    else:
-        print("shortest path is ")
-        pathToString(searchAlgorithms.uniformCostSearch(searchProb))
+    print("longest path is ")
+    pathToString(searchAlgorithms.AStarSearch(searchProb, searchAlgorithms.badHeuristic))
+    # if pathToString(searchAlgorithms.uniformCostSearch(searchProb)) is None:
+    #     print("No Path exists between the two points!")
+    # else:
+    #     print("shortest path is ")
+    #     pathToString(searchAlgorithms.uniformCostSearch(searchProb))

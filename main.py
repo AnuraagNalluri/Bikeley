@@ -23,9 +23,10 @@ class SearchProblem:
         return successors
 
 class Node:
-    def __init__(self, name, edges):
+    def __init__(self, name, edges, elevation):
         self.name = name
         self.edges = edges
+        self.elevation = elevation
 
     def getEdges(self):
         return self.edges
@@ -175,12 +176,12 @@ e120=Edge("I18","I1",272)
 
 
 
-A = Node("A",[e1,e2])
-B = Node("B",[e4])
-C = Node("C",[e3])
-D = Node("D",[e5,e6])
-E = Node("E",[e7])
-F = Node("F",[])
+B1 = Node("B1",[e2,e17,e18],97.58123016)
+B2 = Node("B2",[e1,e22,e54],97.30294037)
+B3 = Node("B3",[e23,e24,e59],93.27148438)
+B4 = Node("B4",[e11,e21,e55,e60],100.9132462)
+B5 = Node("B5",[e31,e87],104.9802475)
+B6 = Node("B6",[e7,e34,e36], 109.0521088)
 nodeDict = {"A":A,"B":B,"C":C,"D":D,"E":E,"F":F}
 gr = Graph(nodeDict)
 inputer = "hi"

@@ -19,7 +19,7 @@ def uniformCostSearch(problem):
     return []
 
 def AStarSearch(problem, heuristic):
-    """Search the node of least total cost first."""
+    """Search the node of least total cost first as defined by the heuristic."""
     closed = []
     fringe = util.PriorityQueue()
     fringe.push((problem.getStartState(),[],0),0)

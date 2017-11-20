@@ -6,8 +6,8 @@ class SearchProblem:
     This class outlines the structure of a search problem
     """
     def __init__(self, start, end, graph):
-        self.startState = start
-        self.goalState = end
+        self.startState = graph.nodes[start].name
+        self.goalState = graph.nodes[end].name
         self.graph = graph
 
     def getStartState(self):
@@ -18,7 +18,7 @@ class SearchProblem:
 
     def getSuccessors(self, state):
         successors=[]
-        for edge in nodeDict[state].getEdges():
+        for edge in nodeDict2[state].getEdges():
             successors.append((edge.end, edge, edge.weight))
         return successors
 
@@ -44,90 +44,6 @@ class Graph:
 def pathToString(path):
     for edge in path:
         print(edge.start + "  -->  " + edge.end)
-
-building_dict = {
-					"Barker Hall": N21,
-					"Koshland Hall": N20,
-					"Li Ka Shing Center": N22,
-					"Genetics and Plant Biology": N20,
-					"Mulford Hall": N48,
-					"Morgan Hall": N20,
-					"Tolman Hall": N19,
-					"Hilgard Hall": N18,
-					"Wellman Hall": N18,
-					"Gianini Hall": N18,
-					"Life Sciences Addition": N23,
-					"Valley Life Sciences Building (North)": N23,
-					"Valley Life Sciences Building (South)": N45,
-					"Moffitt Library": N24,
-					"Haviland Hall": N16,
-					"Starr East Asian Library": N3,
-					"McCone Hal": N2,
-					"North Gate Hall": N1,
-					"O'Brien Hall": N4,
-					"Hesse Hall": N4,
-					"McLaughlin Hall (West Side)": N3,
-					"McLaughlin Hall (East Side)": N4,
-					"Blum Hall": N5,
-					"Etcheverry Hall": N13,
-					"Jacobs Hall": N6,
-					"Soda Hall": N13,
-					"Goldman School": N7,
-					"Sutardja Dai Hall (West Side)": N5,
-					"Sutardja Dai Hall (East Side)": N9,
-					"Davis Hall": N4,
-					"Bechtel Engineering Center": N4,
-					"Evans Hall (Ground Floor)": N10,
-					"Evans Hall (Floors 1 and Above)": N11,
-					"Cory Hall": N9,
-					"Hearst Memorial Mining Building": N11,
-					"Stanley Hall": N12,
-					"Foothill Residence Halls (North)": N14,
-					"Foothill Residence Halls (South)": N15,
-					"Pimental Hall": N27,
-					"Latimer Hall": N27,
-					"Tan Hall": N27,
-					"Campbell Hall": N27,
-					"Le Conte Hall": N26,
-					"Birge Hall": N26,
-					"Gilman Hall": N28,
-					"Giauque Hall": N29,
-					"Hildebrand Hall": N29,
-					"Lewis Hall": N29,
-					"Evans Diamond": N44,
-					"Recreational Sports Facility": N47,
-					"Haas Pavilion": N43,
-					"Alumni House": N43,
-					"Dwinelle Hall (West)": N45,
-					"Dwinelle Hall (East)": N46,
-					"Zellerbach Hall": N41,
-					"Eshleman Hall": N41,
-					"Cesar E. Chavez Student Center": N42,
-					"Martin Luther King Jr. Student Union": N40,
-					"Sproul Hall": N39,
-					"Doe Memorial Library": N25,
-					"California Hall": N24,
-					"Hearst Field Annex": N38,
-					"Barrows Hall": N39,
-					"Wheeler Hall (North)": N25,
-					"Wheeler Hall (South)": N46,
-					"Campanile (Sather Tower)": N26,
-					"Hearst Memorial Gymnasium": N37,
-					"Kroeber Hall": N35,
-					"Wurster Hall": N35,
-					"Hertz Hall": N36,
-					"Morrison Hall": N36,
-					"Hangrove Music Library": N36,
-					"Minor Hall": N30,
-					"Haas School of Business (West)": N30,
-					"Haas School of Business (East)": N31,
-					"Calvin Laboratory": N32,
-					"Boalt Hall": N34,
-					"California Memorial Stadium": N33,
-					"Maxwell Family Field and Stadium Garage": N31,
-					"Upper Hearst Parking Structure": N8,
-					"University House": N17
-				}
 
 e1=Edge("N2","N1",121)
 e2=Edge("N1","N2",121)
@@ -570,10 +486,109 @@ N85 = Node("N85",[e124,e170,e200,e201,e303],81.723533630371)
 N86 = Node("N86",[e294,e326,e346],90.6234664916992)
 N87 = Node("N87",[e118,e243,e292,e345],97.3377380371093)
 
+nodeDict = {
+					"Barker Hall": N21,
+					"Koshland Hall": N20,
+					"Li Ka Shing Center": N22,
+					"Genetics and Plant Biology": N20,
+					"Mulford Hall": N48,
+					"Morgan Hall": N20,
+					"Tolman Hall": N19,
+					"Hilgard Hall": N18,
+					"Wellman Hall": N18,
+					"Gianini Hall": N18,
+					"Life Sciences Addition": N23,
+					"Valley Life Sciences Building (North)": N23,
+					"Valley Life Sciences Building (South)": N45,
+					"Moffitt Library": N24,
+					"Haviland Hall": N16,
+					"Starr East Asian Library": N3,
+					"McCone Hal": N2,
+					"North Gate Hall": N1,
+					"O'Brien Hall": N4,
+					"Hesse Hall": N4,
+					"McLaughlin Hall (West Side)": N3,
+					"McLaughlin Hall (East Side)": N4,
+					"Blum Hall": N5,
+					"Etcheverry Hall": N13,
+					"Jacobs Hall": N6,
+					"Soda Hall": N13,
+					"Goldman School": N7,
+					"Sutardja Dai Hall (West Side)": N5,
+					"Sutardja Dai Hall (East Side)": N9,
+					"Davis Hall": N4,
+					"Bechtel Engineering Center": N4,
+					"Evans Hall (Ground Floor)": N10,
+					"Evans Hall (Floors 1 and Above)": N11,
+					"Cory Hall": N9,
+					"Hearst Memorial Mining Building": N11,
+					"Stanley Hall": N12,
+					"Foothill Residence Halls (North)": N14,
+					"Foothill Residence Halls (South)": N15,
+					"Pimental Hall": N27,
+					"Latimer Hall": N27,
+					"Tan Hall": N27,
+					"Campbell Hall": N27,
+					"Le Conte Hall": N26,
+					"Birge Hall": N26,
+					"Gilman Hall": N28,
+					"Giauque Hall": N29,
+					"Hildebrand Hall": N29,
+					"Lewis Hall": N29,
+					"Evans Diamond": N44,
+					"Recreational Sports Facility": N47,
+					"Haas Pavilion": N43,
+					"Alumni House": N43,
+					"Dwinelle Hall (West)": N45,
+					"Dwinelle Hall (East)": N46,
+					"Zellerbach Hall": N41,
+					"Eshleman Hall": N41,
+					"Cesar E. Chavez Student Center": N42,
+					"Martin Luther King Jr. Student Union": N40,
+					"Sproul Hall": N39,
+					"Doe Memorial Library": N25,
+					"California Hall": N24,
+					"Hearst Field Annex": N38,
+					"Barrows Hall": N39,
+					"Wheeler Hall (North)": N25,
+					"Wheeler Hall (South)": N46,
+					"Campanile (Sather Tower)": N26,
+					"Hearst Memorial Gymnasium": N37,
+					"Kroeber Hall": N35,
+					"Wurster Hall": N35,
+					"Hertz Hall": N36,
+					"Morrison Hall": N36,
+					"Hangrove Music Library": N36,
+					"Minor Hall": N30,
+					"Haas School of Business (West)": N30,
+					"Haas School of Business (East)": N31,
+					"Calvin Laboratory": N32,
+					"Boalt Hall": N34,
+					"California Memorial Stadium": N33,
+					"Maxwell Family Field and Stadium Garage": N31,
+					"Upper Hearst Parking Structure": N8,
+					"University House": N17
+				}
 
 
-
-nodeDict = {"A":A,"B":B,"C":C,"D":D,"E":E,"F":F}
+# nodeDict = {"A":A,"B":B,"C":C,"D":D,"E":E,"F":F}
+nodeDict2 = {
+				"N1": N1,"N2": N2,"N3": N3,"N4": N4,"N5": N5,"N6": N6,
+				"N7": N7,"N8": N8,"N9": N9,"N10": N10,"N11": N11,"N12": N12,
+				"N13": N13,"N14": N14,"N15": N15,"N16": N16,"N17": N17,"N18": N18,
+				"N19": N19,"N20": N20,"N21": N21,"N22": N22,"N23": N23,"N24": N24,
+				"N25": N25,"N26": N26,"N27": N27,"N28": N28,"N29": N29,"N30": N30,
+				"N31": N31,"N32": N32,"N33": N33,"N34": N34,"N35": N35,"N36": N36,
+				"N37": N37,"N38": N38,"N39": N39,"N40": N40,"N41": N41,"N42": N42,
+				"N43": N43,"N44": N44,"N45": N45,"N46": N46,"N47": N47,"N48": N48,
+				"N49": N49,"N50": N50,"N51": N51,"N52": N52,"N53": N53,"N54": N54,
+				"N55": N55,"N56": N56,"N57": N57,"N58": N58,"N59": N59,"N60": N60,
+				"N61": N61,"N62": N62,"N63": N63,"N64": N64,"N65": N65,"N66": N66,
+				"N67": N67,"N68": N68,"N69": N69,"N70": N70,"N71": N71,"N72": N72,
+				"N73": N73,"N74": N74,"N75": N75,"N76": N76,"N77": N77,"N78": N78,
+				"N79": N79,"N80": N80,"N81": N81,"N82": N82,"N83": N83,"N84": N84,
+				"N85": N85,"N86": N86,"N87": N87
+			}
 gr = Graph(nodeDict)
 inputer = "hi"
 while inputer != "quit":

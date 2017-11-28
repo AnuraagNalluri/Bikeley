@@ -32,10 +32,11 @@ class Node:
         return self.edges
 
 class Edge:
-    def __init__(self, start, end, weight):
+    def __init__(self, start, end, weight, walkZone):
         self.start = start
         self.end = end
         self.weight = weight
+        self.walkOnly = walkZone
 
 class Graph:
     def __init__(self, nodeDict):

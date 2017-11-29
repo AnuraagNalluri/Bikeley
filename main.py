@@ -74,9 +74,10 @@ def pathToString(path):
 
 def pathToList(path):
     pathList =[]
-    pathList.append(coordDict[edge.start])
+    pathList.append(coordDict[path[0].start])
     for edge in path:
         pathList.append(coordDict[edge.end])
+    return pathList
 
 e1=Edge("N2","N1",121,False)
 e2=Edge("N1","N2",121,False)
@@ -684,13 +685,14 @@ searchProb = SearchProblem(od['origin'],od['destination'],gr)
 if searchAlgorithms.uniformCostSearch(searchProb) == []:
     print("No Path exists between the two points!")
 else:
-    print("shortest path is ")
-    pathToString(searchAlgorithms.uniformCostSearch(searchProb))
-    print("longest path is ")
-    pathToString(searchAlgorithms.AStarSearch(searchProb, searchAlgorithms.badHeuristic))
-    print("flatest path is ")
-    pathToString(searchAlgorithms.SteepSearch(searchProb,1,nodeDict2))
-    print("least flat path is ")
-    pathToString(searchAlgorithms.SteepSearch(searchProb,-1,nodeDict2))
-    print("least uphill path is ")
-    pathToString(searchAlgorithms.UphillSearch(searchProb,nodeDict2))
+    #print("shortest path is ")
+    print(pathToList(searchAlgorithms.uniformCostSearch(searchProb)))
+    X = pathToList(searchAlgorithms.uniformCostSearch(searchProb))
+    # print("longest path is ")
+    # pathToString(searchAlgorithms.AStarSearch(searchProb, searchAlgorithms.badHeuristic))
+    # print("flatest path is ")
+    # pathToString(searchAlgorithms.SteepSearch(searchProb,1,nodeDict2))
+    # print("least flat path is ")
+    # pathToString(searchAlgorithms.SteepSearch(searchProb,-1,nodeDict2))
+    # print("least uphill path is ")
+    # pathToString(searchAlgorithms.UphillSearch(searchProb,nodeDict2))

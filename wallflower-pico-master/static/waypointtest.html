@@ -1,21 +1,6 @@
 
 
-            function calcRoute() {
-                var first = new google.maps.LatLng(37.8761364, -122.2595716);
-                var second = new google.maps.LatLng(37.8750948, -122.2601509);
-                var third = new google.maps.LatLng(37.8728251, -122.262404);
-                var origin_cor = new google.maps.LatLng(37.8761915, -122.2590835);
-                var destination_cor = new google.maps.LatLng(37.8706188, -122.2657835);
-
-                var request = {
-                    origin: origin_cor,
-                    destination: destination_cor,
-                    waypoints: [{location: first, stopover: true},
-                        {location: second, stopover: true},
-                        {location: third, stopover: true}],
-                    optimizeWaypoints: false,
-                    travelMode: google.maps.DirectionsTravelMode.BICYCLING
-                };
+            
                 directionsService.route(request, function (response, status) {
                     if (status == google.maps.DirectionsStatus.OK) {
                         directionsDisplay.setDirections(response);

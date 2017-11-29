@@ -681,13 +681,34 @@ gr = Graph(nodeDict)
 #     if input1 == "quit" or input2 == "quit":
 #         inputer = "quit"
 #         break
+
+def is_number(s):
+    try:
+        float(s)
+        return True
+    except ValueError:
+        return False
+
+sumz = 0
+for key in od:
+    if key != 'time' and is_number(od[key]):
+        sumz += int(od[key])
+
 searchProb = SearchProblem(od['origin'],od['destination'],gr)
 if searchAlgorithms.uniformCostSearch(searchProb) == []:
     print("No Path exists between the two points!")
-else:
+elif sumz != 0:
     #print("shortest path is ")
-    print(pathToList(searchAlgorithms.uniformCostSearch(searchProb)))
-    X = pathToList(searchAlgorithms.uniformCostSearch(searchProb))
+    if od['time'] == '':
+        X = pathToList(searchAlgorithms.BikeleySearch(searchProb,nodeDict2,None,searchAlgorithms.bikeleyHeuristic))
+    else:
+        X = pathToList(searchAlgorithms.BikeleySearch(searchProb,nodeDict2,int(od['time']),searchAlgorithms.bikeleyHeuristic))
+
+else:
+    if od['time'] == '':
+        X = pathToList(searchAlgorithms.BikeleySearch(searchProb,nodeDict2,None,searchAlgorithms.trivialHeuristic))
+    else:
+        X = pathToList(searchAlgorithms.BikeleySearch(searchProb,nodeDict2,int(od['time']),searchAlgorithms.trivialHeuristic))
     # print("longest path is ")
     # pathToString(searchAlgorithms.AStarSearch(searchProb, searchAlgorithms.badHeuristic))
     # print("flatest path is ")

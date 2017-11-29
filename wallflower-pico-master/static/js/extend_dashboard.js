@@ -62,10 +62,41 @@ function onInputFormSubmit(e){
 		// Do nothing } 
 		}
 	});
-
-	// new
-	//window.location.href = "waypointtest.html";
 };
+
+// Call html map
+custom_sidebar_link_callback = function( select ){
+	if(select == 'report'){
+		window.location.href = "map2.html";
+	}
+}
+
+// /* Add function to get points for report page */ 
+// function getPoints( the_network_id, the_object_id, the_stream_id{ 
+// var query_data = {}; 
+// var query_string = '?'+$.param(query_data); 
+// var url = '/networks/'+the_network_id+'/objects/'+the_object_id; 
+// url += '/streams/'+the_stream_id+'/points'+query_string; 
+
+// // Send the request to the server 
+// 	$.ajax({ 
+// 		url : url, 
+// 		type: "get", 
+// 		success : function(response){ 
+// 			console.log( response ); 
+
+// 			if( response['points-code'] == 200 ){ 
+// 				var num_points = response.points.length 
+// 				var most_recent_value = response.points[0].value 
+// 				console.log("Most recent value: "+most_recent_value); 
+// 				console.log("Number of points retrieved: "+num_points); 
+// 			} 
+// 		}, 
+// 		error : function(jqXHR, textStatus, errorThrown){ 
+// 			console.log(jqXHR); 
+// 		} 
+// 	}); 
+// }
 
 // /* Add function to get points for report page */ 
 // function getPoints( the_network_id, the_object_id, the_stream_id, callback ){ 

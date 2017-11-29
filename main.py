@@ -1,5 +1,31 @@
 import util
 import searchAlgorithms
+import time
+import requests
+import json
+import random
+import datetime
+import serial
+import pdb
+import ast
+
+base = 'http://127.0.0.1:5000'
+network_id = 'local'
+header = {}
+
+print("Start retrieving OD")
+query = {}
+endpoint = '/networks/'+network_id+'/objects/obj-OD-pairs/streams/stm-form-input/points'
+response = requests.request('GET', base + endpoint, params=query, headers=header, timeout=120 )
+#print response
+resp = json.loads( response.text )
+#print "response ", resp
+od = resp['points'][0]['value']
+print "Done Retrieving OD: "
+
+print type(od), od
+od = ast.literal_eval(od)
+print type(od), od
 
 class SearchProblem:
     """
@@ -593,24 +619,24 @@ nodeDict2 = {
 				"N85": N85,"N86": N86,"N87": N87
 			}
 gr = Graph(nodeDict)
-inputer = "hi"
-while inputer != "quit":
-    input1 = input("What is the start point? type quit to exit")
-    input2 = input("What is the end point? type quit to exit")
-    if input1 == "quit" or input2 == "quit":
-        inputer = "quit"
-        break
-    searchProb = SearchProblem(input1,input2,gr)
-    if searchAlgorithms.uniformCostSearch(searchProb) == []:
-        print("No Path exists between the two points!")
-    else:
-        print("shortest path is ")
-        pathToString(searchAlgorithms.uniformCostSearch(searchProb))
-        print("longest path is ")
-        pathToString(searchAlgorithms.AStarSearch(searchProb, searchAlgorithms.badHeuristic))
-        print("flatest path is ")
-        pathToString(searchAlgorithms.SteepSearch(searchProb,1,nodeDict2))
-        print("least flat path is ")
-        pathToString(searchAlgorithms.SteepSearch(searchProb,-1,nodeDict2))
-        print("least uphill path is ")
-        pathToString(searchAlgorithms.UphillSearch(searchProb,nodeDict2))
+# inputer = "hi"
+# while inputer != "quit":
+#     input1 = input("What is the start point? type quit to exit")
+#     input2 = input("What is the end point? type quit to exit")
+#     if input1 == "quit" or input2 == "quit":
+#         inputer = "quit"
+#         break
+searchProb = SearchProblem(od['origin'],od['destination'],gr)
+if searchAlgorithms.uniformCostSearch(searchProb) == []:
+    print("No Path exists between the two points!")
+else:
+    print("shortest path is ")
+    pathToString(searchAlgorithms.uniformCostSearch(searchProb))
+    print("longest path is ")
+    pathToString(searchAlgorithms.AStarSearch(searchProb, searchAlgorithms.badHeuristic))
+    print("flatest path is ")
+    pathToString(searchAlgorithms.SteepSearch(searchProb,1,nodeDict2))
+    print("least flat path is ")
+    pathToString(searchAlgorithms.SteepSearch(searchProb,-1,nodeDict2))
+    print("least uphill path is ")
+    pathToString(searchAlgorithms.UphillSearch(searchProb,nodeDict2))
